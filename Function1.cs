@@ -31,7 +31,7 @@ namespace MyFirstAzureFunction
                 message = "Key Vault Integration Test",
                 secretsLoaded = new
                 {
-                    whatsappApiKey = whatsappOk ? "Loaded (first 10 chars: " + whatsappkey?.Substring(0, 10) + "...)" : "Failed"
+                    whatsappApiKey = whatsappOk ? "Loaded (first 10 chars: " + whatsappkey + "...)" : "Failed"
                 },
                 executedAt = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss.fff"),
                 executionId = Guid.NewGuid().ToString()
