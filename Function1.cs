@@ -14,15 +14,22 @@ namespace MyFirstAzureFunction
             _logger = logger;
         }
 
-        [Function("Function1")]
+        [Function("Function1")]        
         public IActionResult Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequest req)
         {
-            _logger.LogInformation("Function triggered!");
             _logger.LogInformation("C# HTTP trigger function processed a request.");
 
             string name = req.Query["name"];
 
-            return new OkObjectResult($"Hello, {name ?? "Azure Function User"}! Welcome to serverless!");
+            // Timestamp add karo response mein
+            var response = new
+            {
+                message = $"Hello, {name ?? "Azure Function User"}! Welcome to serverless!",
+                executedAt = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss.fff"),
+                executionId = Guid.NewGuid().ToString()
+            };
+
+            return new OkObjectResult(response);
         }
     }
 }
